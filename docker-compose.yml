@@ -1,0 +1,16 @@
+# Use postgres/example user/password credentials
+version: '3.8'
+
+services:
+    PostgreDB:
+        image: postgres
+        restart: always
+        environment: 
+            - POSTGRES_DB=UnoDB
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=test
+        ports: 
+            - '5432:5432'
+        #volumes:
+            # kropka przed ./ oznacza ściekę gdzie zostaje odplony plik komendą docker-compose up
+            # - ./postgres-data:/var/lib/postgresql/data

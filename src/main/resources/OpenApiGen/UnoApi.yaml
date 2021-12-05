@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Uno BE APi
+  description: Uno BE APi
+  version: 1.0.0
+servers:
+  - url: 'http'
+    description: Uno BE Api
+paths:
+  /users:
+    get:
+      tags:
+        - User
+      summary: Endpoint for get all users
+      operationId: getUsers
+      responses:
+        '200':
+          description: All users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Error
+
+  /user:
+    post:
+      tags:
+        - User
+      summary: Endpoint to add new user
+      operationId: addUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: UserAdded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Error
+
+  /login:
+    put:
+      tags:
+        - Login
+      summary: Endpoint to login a user
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User loged
+        400:
+          description: bad password or user
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+        winningCount:
+          type: integer
+          format: int64
+        losesCount:
+          type: integer
+          format: int64
+        avatarUrl:
+          type: string

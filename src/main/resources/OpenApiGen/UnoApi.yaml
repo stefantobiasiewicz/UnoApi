@@ -19,7 +19,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: "array"
+                items:
+                  $ref: '#/components/schemas/User'
         '400':
           description: Error
 
@@ -35,6 +37,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+
       responses:
         '200':
           description: UserAdded
@@ -63,16 +66,49 @@ paths:
         400:
           description: bad password or user
 
+  /image:
+    post:
+      tags:
+        - FileStorage
+      summary: Endpoint to store an image
+      operationId: addImage
+      requestBody:
+        required: true
+        content:
+          # a binary file of type png or jpeg
+          'image/jpeg':
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: User loged
+          content:
+            'image/jpeg':
+              schema:
+                type: string
+                format: binary
+        400:
+          description: bad password or user
+
 
 components:
   schemas:
     User:
+      required:
+        - login
+        - password
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         login:
           type: string
+          nullable: false
         password:
           type: string
+          nullable: false
         winningCount:
           type: integer
           format: int64

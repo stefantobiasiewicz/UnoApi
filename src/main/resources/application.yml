@@ -6,3 +6,14 @@ spring:
     url: ${database.url:jdbc:postgresql://localhost:5432/UnoDB}
     username: ${database.username:user}
     password: ${database.password:test}
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.default_schema: uno_api
+    packages-to-scan:
+      - pl.polsl.UnoApi.repository.dao
+logging:
+  level:
+    root: info

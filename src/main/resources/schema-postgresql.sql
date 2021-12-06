@@ -1,0 +1,1 @@
+SET search_path TO uno_api

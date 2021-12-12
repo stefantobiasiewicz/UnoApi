@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import pl.polsl.UnoApi.Api.exceptions.ObjectExistException;
 import pl.polsl.UnoApi.api.UserApi;
+import pl.polsl.UnoApi.game.GameService;
 import pl.polsl.UnoApi.mapper.UserMapper;
 import pl.polsl.UnoApi.model.UserDto;
 import pl.polsl.UnoApi.repository.UserRepository;
@@ -23,9 +24,12 @@ public class UserController implements UserApi {
     UserMapper userMapper;
     Validator validator;
 
+    GameService gameService;
+
     @Override
     public ResponseEntity<List<UserDto>> getUsers() {
         var list = userMapper.UsersToUserDtos(userRepository.findAll());
+        gameService.addTopic();
         return ResponseEntity.ok(list);
     }
 

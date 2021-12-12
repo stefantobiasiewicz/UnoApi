@@ -4,20 +4,39 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.polsl.UnoApi.game.config.MqttConfig;
 import pl.polsl.UnoApi.game.config.MqttPublisher;
+import pl.polsl.UnoApi.repository.GameRepository;
+import pl.polsl.UnoApi.repository.dao.Game;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class GameService {
 
     private MqttConfig mqttConfig;
-
     private MqttPublisher mqttPublisher;
+    GameRepository gameRepository;
 
-    public void addTopic(){
-        this.mqttConfig.addTopic("krzysio");
+    List<Game> games = new ArrayList<>();
+
+    public GameService(MqttConfig mqttConfig, MqttPublisher mqttPublisher, GameRepository gameRepository) {
+        this.mqttConfig = mqttConfig;
+        this.mqttPublisher = mqttPublisher;
+        this.gameRepository = gameRepository;
+
+
     }
 
-    public void sednMsg() {
-        mqttPublisher.publish("krzysio", "hehe");
+    void createNewGame(int players){
+        String gameTopic = UUID.randomUUID().toString();
+
+        Game newGame = new Game();
+        newGame.setTopic(gameTopic);
+        newGame.setPlayers(players);
+        newGame.setGameState(GameState.Wait);
+        gameRepository.save(newGame);
+
+
     }
 }

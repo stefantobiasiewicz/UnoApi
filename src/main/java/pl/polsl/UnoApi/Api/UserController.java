@@ -29,8 +29,6 @@ public class UserController implements UserApi {
     @Override
     public ResponseEntity<List<UserDto>> getUsers() {
         var list = userMapper.UsersToUserDtos(userRepository.findAll());
-        gameService.addTopic();
-        gameService.sednMsg();
         return ResponseEntity.ok(list);
     }
 

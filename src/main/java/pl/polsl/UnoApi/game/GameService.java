@@ -17,4 +17,7 @@ public class GameService {
         this.mqttConfig.addTopic("krzysio");
     }
 
+    public void sednMsg() {
+        mqttPublisher.publish("krzysio", "hehe");
+    }
 }

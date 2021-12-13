@@ -91,6 +91,132 @@ paths:
         400:
           description: bad password or user
 
+  /game/create/{players}:
+    post:
+      tags:
+        - Game
+      summary: Endpoint to create new game
+      operationId: createNewGame
+      parameters:
+        - in: path
+          required: true
+          name: players
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: New game created
+        '400':
+          description: Error
+
+  /games:
+    get:
+      tags:
+        - Game
+      summary: Endpoint to get all games
+      operationId: getGames
+      responses:
+        200:
+          description: all games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+
+  /game/{id}:
+    get:
+      tags:
+        - Game
+      summary: Endpoint to get a game by id
+      operationId: getGame
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: game by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+
+  /games/{status}:
+    get:
+      tags:
+        - Game
+      summary: Endpoint to get game by status { Wait, Started, End}
+      operationId: getGameByStatus
+      parameters:
+        - in: path
+          name: status
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Games by status
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+
+  /game/user/{userId}:
+    get:
+      tags:
+        - Game
+      summary: Endpoint to get games connected to user
+      operationId: getUserGames
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type:
+              integer
+      responses:
+        200:
+          description: User Games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+
+  /game/user/{userId}/{status}:
+    get:
+      tags:
+        - Game
+      summary: Endpoint to get user games with status
+      operationId: getUserGamesByStatus
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type:
+              integer
+        - in: path
+          name: status
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: User Games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
 
 components:
   schemas:
@@ -116,4 +242,18 @@ components:
           type: integer
           format: int64
         avatarUrl:
+          type: string
+
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        topic:
+          type: string
+        players:
+          type: integer
+          format: int64
+        gameState:
           type: string

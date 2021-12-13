@@ -25,10 +25,11 @@ public class GameService {
         this.mqttPublisher = mqttPublisher;
         this.gameRepository = gameRepository;
 
-
+        //List<Game> gamesStarted = this.gameRepository.findAllByGameStateIsBefore(GameState.End.toString());
+        //this.games.addAll(gamesStarted);
     }
 
-    void createNewGame(int players){
+    public void createNewGame(int players){
         String gameTopic = UUID.randomUUID().toString();
 
         Game newGame = new Game();

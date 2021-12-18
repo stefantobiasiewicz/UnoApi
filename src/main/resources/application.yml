@@ -14,6 +14,7 @@ spring:
       hibernate.default_schema: uno_api
     packages-to-scan:
       - pl.polsl.UnoApi.repository.dao
+    show-sql: true
 
 logging:
   level:
@@ -23,3 +24,4 @@ mqtt:
   username: homeassistant
   password: Da8aewetu4theiPhe8zal7ahx8aeneitoM8ni2cha5meDae3rithievooghaghig
   url: tcp://157.158.168.83:1883
+  prefix: UnoGame

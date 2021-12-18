@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import pl.polsl.UnoApi.Api.exceptions.ObjectExistException;
 import pl.polsl.UnoApi.api.UserApi;
-import pl.polsl.UnoApi.game.GameService;
+import pl.polsl.UnoApi.service.GameService;
 import pl.polsl.UnoApi.mapper.UserMapper;
 import pl.polsl.UnoApi.model.UserDto;
 import pl.polsl.UnoApi.repository.UserRepository;
@@ -28,14 +28,14 @@ public class UserController implements UserApi {
 
     @Override
     public ResponseEntity<List<UserDto>> getUsers() {
-        var list = userMapper.UsersToUserDtos(userRepository.findAll());
+        var list = userMapper.usersToUserDtos(userRepository.findAll());
         return ResponseEntity.ok(list);
     }
 
-    @Override
+
     public ResponseEntity<UserDto> addUser(UserDto userDto) {
         log.info("UserController -> addUser {}", userDto);
-        var user = userMapper.UserDtoToUser(userDto);
+        var user = userMapper.userDtoToUser(userDto);
         validator.userValid(user);
         try{
             User saved = userRepository.save(user);

@@ -1,11 +1,10 @@
-package pl.polsl.UnoApi.game.config;
+package pl.polsl.UnoApi.Mqtt;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +32,8 @@ public class MqttConfig {
     private String username;
     private String password;
     private String url;
+    @Getter
+    private String prefix;
 
     private MqttPahoMessageDrivenChannelAdapter adapter;
 

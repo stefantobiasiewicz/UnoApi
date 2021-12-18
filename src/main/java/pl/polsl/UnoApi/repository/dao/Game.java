@@ -5,6 +5,8 @@ import lombok.Setter;
 import pl.polsl.UnoApi.game.GameState;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "Game")
 @Entity
@@ -16,7 +18,7 @@ public class Game {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "topic")
+    @Column(name = "topic", unique = true)
     String topic;
 
     @Column(name = "players")
@@ -25,5 +27,12 @@ public class Game {
     @Enumerated(EnumType.STRING)
     @Column(name = "game_state")
     private GameState gameState;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Players> playerses = new ArrayList<>();
+
+    @OneToOne(cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH}, orphanRemoval = true)
+    @JoinColumn(name = "main_player_id")
+    private User mainPlayer;
 
 }

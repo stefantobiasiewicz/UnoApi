@@ -6,10 +6,11 @@ import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +20,6 @@ public class User {
     @NotNull
     @Column(nullable = false, unique = true)
     private String login;
-
-    @NotNull
-    @Column(nullable = false)
-    private String password;
 
     private int winningCount;
 

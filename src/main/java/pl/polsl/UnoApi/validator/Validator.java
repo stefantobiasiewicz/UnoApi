@@ -10,8 +10,6 @@ public class Validator {
     public void userValid(User user){
         if(user.getLogin() == null || user.getLogin().isBlank() || user.getLogin().isEmpty())
             throw new ObjectValidException("User.login field corrupted");
-        if(user.getPassword() == null || user.getPassword().isBlank() || user.getPassword().isEmpty())
-            throw new ObjectValidException("User.password field corrupted");
     }
 
 }

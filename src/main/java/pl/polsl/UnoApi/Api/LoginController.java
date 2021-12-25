@@ -3,7 +3,7 @@ package pl.polsl.UnoApi.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import pl.polsl.UnoApi.api.LoginApi;
+import pl.polsl.UnoApi.genApi.LoginApi;
 import pl.polsl.UnoApi.mapper.UserMapper;
 import pl.polsl.UnoApi.model.ChangeUserDataDto;
 import pl.polsl.UnoApi.model.LoginUserDto;

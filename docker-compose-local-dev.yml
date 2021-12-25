@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  PostgreDB:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=UnoDB
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=test
+    ports:
+      - '5432:5432'
+      #volumes:
+      # kropka przed ./ oznacza ściekę gdzie zostaje odplony plik komendą docker-compose up
+      # - ./postgres-data:/var/lib/postgresql/data
+  mqtt:
+    image: eclipse-mosquitto
+    ports:
+      - '1883:1883'
+    restart: always
+    environment:
+      PUID: 1883
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  app:
+    image: stefantobiasiewicz/unoapi:1.0-SNAPSHOT
+    ports:
+      - '9002:9002'
+    restart: always
+    environment:
+      - database.url=jdbc:postgresql://192.168.100.56:5432/UnoDB
+      - database.username=user
+      - database.password=test
+      - mqtt.url=tcp://192.168.100.56:1883
+      - spring.jpa.hibernate.ddl-auto=create

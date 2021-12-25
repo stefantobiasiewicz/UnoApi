@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 9002
 
 spring:
   datasource:
@@ -21,7 +21,10 @@ logging:
     root: info
 
 mqtt:
-  username: homeassistant
-  password: Da8aewetu4theiPhe8zal7ahx8aeneitoM8ni2cha5meDae3rithievooghaghig
-  url: tcp://157.158.168.83:1883
+  username:
+  password:
+  url: tcp://127.0.0.1:1883
   prefix: UnoGame
+#  username: homeassistant
+#  password: Da8aewetu4theiPhe8zal7ahx8aeneitoM8ni2cha5meDae3rithievooghaghig
+#  url: tcp://157.158.168.83:1883

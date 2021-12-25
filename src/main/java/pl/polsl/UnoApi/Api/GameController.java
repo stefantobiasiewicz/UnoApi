@@ -2,7 +2,7 @@ package pl.polsl.UnoApi.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import pl.polsl.UnoApi.api.GameApi;
+import pl.polsl.UnoApi.genApi.GameApi;
 import pl.polsl.UnoApi.service.GameService;
 import pl.polsl.UnoApi.game.GameState;
 import pl.polsl.UnoApi.mapper.GameMapper;

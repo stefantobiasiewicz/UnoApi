@@ -189,7 +189,7 @@
                                 <groupId>pl.polsl</groupId>
                                 <artifactId>UnoApi</artifactId>
 
-                                <apiPackage>pl.polsl.UnoApi.api</apiPackage>
+                                <apiPackage>pl.polsl.UnoApi.genApi</apiPackage>
                                 <modelPackage>pl.polsl.UnoApi.model</modelPackage>
 
                                 <modelNameSuffix>Dto</modelNameSuffix>
@@ -203,7 +203,7 @@
                                     <delegatePattern>false</delegatePattern>
                                     <serializableModel>true</serializableModel>
                                     <useBeanValidation>false</useBeanValidation>
-                                    <dateLibrary>java8</dateLibrary>
+                                    <dateLibrary>java11</dateLibrary>
                                     <serializationLibrary>jackson</serializationLibrary>
                                     <useTags>true</useTags>
                                 </configOptions>
@@ -235,6 +235,19 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.1.4</version>
+                <configuration>
+                    <to>
+                        <image>stefantobiasiewicz/unoapi</image>
+                        <tags>
+                            ${version}
+                        </tags>
+                    </to>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>

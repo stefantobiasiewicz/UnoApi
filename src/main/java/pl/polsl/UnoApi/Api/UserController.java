@@ -5,7 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import pl.polsl.UnoApi.Api.exceptions.ObjectExistException;
-import pl.polsl.UnoApi.api.UserApi;
+import pl.polsl.UnoApi.genApi.UserApi;
 import pl.polsl.UnoApi.service.GameService;
 import pl.polsl.UnoApi.mapper.UserMapper;
 import pl.polsl.UnoApi.model.UserDto;

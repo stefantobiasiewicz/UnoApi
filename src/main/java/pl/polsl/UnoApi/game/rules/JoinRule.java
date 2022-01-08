@@ -61,12 +61,12 @@ public class JoinRule extends Rule<JoinGameMessage> {
             gamePlay.setActivePlayer(randomPlayer);
 
             //todo randomowa karta na gore
-            gamePlay.setTopCard("Y3");
+            gamePlay.setTopCard("redTwo");
 
             GameStartMessage gameStartMessage = new GameStartMessage();
             gameStartMessage.setFrom(-1);
             gameStartMessage.setCard(gamePlay.getTopCard());
-            gameStartMessage.setUserId(gamePlay.getActivePlayer());
+            gameStartMessage.setUserId(gamePlay.getActiveGamePlayer().getUser().getId().intValue());
             try {
                 gamePlay.getGame().setGameState(GameState.Started);
                 gameRepository.save(gamePlay.getGame());

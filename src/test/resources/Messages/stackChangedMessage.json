@@ -1,0 +1,13 @@
+{
+  "type":"stackChanged",
+  "from":0,
+  "firstCard":"redTwo",
+  "secondCard":"redTwo",
+  "thirdCard":"redTwo",
+  "fourthCard":"redTwo",
+  "firstIndex":1.0,
+  "secondIndex":2.0,
+  "thirdIndex":3.0,
+  "fourthIndex":4.0,
+  "cardOnTop": "redTwo"
+}

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.polsl.UnoApi.Mqtt.MqttPublisher;
 import pl.polsl.UnoApi.game.rules.CardThrowRule;
+import pl.polsl.UnoApi.game.rules.InitGameRule;
 import pl.polsl.UnoApi.game.rules.JoinRule;
 import pl.polsl.UnoApi.repository.GameRepository;
 
@@ -25,6 +26,11 @@ public class RulesFactory {
     @Bean
     CardThrowRule getCardThrowRule(){
         return new CardThrowRule(mqttPublisher, gameRepository, objectMapper);
+    }
+
+    @Bean
+    InitGameRule getInitGameRule(){
+        return new InitGameRule(objectMapper,gameRepository,mqttPublisher);
     }
 
 }

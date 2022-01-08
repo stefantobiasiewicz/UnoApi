@@ -44,7 +44,12 @@ public class LoginController implements LoginApi {
 
     @Override
     public ResponseEntity<UserDto> registerUser(LoginUserDto loginUserDto) {
-        var user = loginService.registerNewUser(loginUserDto.getLogin(), loginUserDto.getPassword());
-        return ResponseEntity.ok(userMapper.userToUserDto(user));
+        try{
+            var user = loginService.registerNewUser(loginUserDto.getLogin(), loginUserDto.getPassword());
+            return ResponseEntity.ok(userMapper.userToUserDto(user));
+        }
+        catch (Exception ex){
+            return ResponseEntity.status(400).build();
+        }
     }
 }

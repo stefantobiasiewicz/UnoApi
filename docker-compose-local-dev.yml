@@ -29,8 +29,8 @@ services:
       - '9002:9002'
     restart: always
     environment:
-      - database.url=jdbc:postgresql://192.168.100.56:5432/UnoDB
+      - database.url=jdbc:postgresql://192.168.1.62:5432/UnoDB
       - database.username=user
       - database.password=test
-      - mqtt.url=tcp://192.168.100.56:1883
+      - mqtt.url=tcp://192.168.1.62:1883
       - spring.jpa.hibernate.ddl-auto=create

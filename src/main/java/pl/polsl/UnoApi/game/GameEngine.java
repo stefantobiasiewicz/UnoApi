@@ -1,6 +1,7 @@
 package pl.polsl.UnoApi.game;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.polsl.UnoApi.game.domain.GamePlay;
 import pl.polsl.UnoApi.game.domain.GamePlayer;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 public class GameEngine {
 
@@ -27,6 +29,7 @@ public class GameEngine {
     public void gameManage(Game game, Message message){
 
         Rule rule = getRuleByMessage(message);
+        if(rule == null)    return;
         rule.run(getGamePlayByGame(game), message);
 
     }
@@ -36,10 +39,11 @@ public class GameEngine {
                 .filter(rule -> rule.isApplicable(message))
                 .collect(Collectors.toList());
         if (rules.isEmpty()) {
-            throw new RuntimeException("No such game Rule");
+            log.warn("No such game Rule");
+            return null;
         }
         if (rules.size() > 1) {
-            throw new RuntimeException("There is more than 1 game rule mach to this message");
+            log.warn("There is more than 1 game rule mach to this message");
         }
         return rules.get(0);
     }

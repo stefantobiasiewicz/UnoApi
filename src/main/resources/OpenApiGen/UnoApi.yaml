@@ -259,7 +259,7 @@ paths:
     get:
       tags:
         - Game
-      summary: get games where user are invited
+      summary: get games where user is invited
       operationId: getInvitation
       parameters:
         - in: path

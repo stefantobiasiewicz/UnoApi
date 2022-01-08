@@ -14,7 +14,9 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = GameStartMessage.class, name = "GameStart"),
         @JsonSubTypes.Type(value = CardThrowMessage.class, name = "card"),
         @JsonSubTypes.Type(value = PlayerMoveMessage.class, name = "playerMove"),
-        @JsonSubTypes.Type(value = GameEndMessage.class, name = "GameEnd")
+        @JsonSubTypes.Type(value = GameEndMessage.class, name = "GameEnd"),
+        @JsonSubTypes.Type(value = InitGameMoveMessage.class, name = "initialMove"),
+        @JsonSubTypes.Type(value = StackChangedMessage.class, name = "stackChanged")
 })
 public abstract class Message implements Serializable {
 

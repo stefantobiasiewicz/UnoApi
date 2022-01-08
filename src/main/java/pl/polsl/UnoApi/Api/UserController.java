@@ -27,6 +27,11 @@ public class UserController implements UserApi {
     GameService gameService;
 
     @Override
+    public ResponseEntity<UserDto> getUserById(Long id) {
+        return ResponseEntity.ok(userMapper.userToUserDto(userRepository.getById(id)));
+    }
+
+    @Override
     public ResponseEntity<List<UserDto>> getUsers() {
         var list = userMapper.usersToUserDtos(userRepository.findAll());
         return ResponseEntity.ok(list);

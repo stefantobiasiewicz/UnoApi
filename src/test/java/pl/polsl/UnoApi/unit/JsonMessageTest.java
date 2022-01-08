@@ -104,6 +104,50 @@ public class JsonMessageTest {
         assertTrue(testJoinMessage instanceof GameEndMessage);
     }
 
+    @Test
+    void initGameMoveMessageTest() throws JsonProcessingException {
+
+        InitGameMoveMessage initGameMoveMessage = new InitGameMoveMessage();
+        initGameMoveMessage.setCard1("Y1");
+        initGameMoveMessage.setCard2("Y2");
+        initGameMoveMessage.setCard3("Y3");
+        initGameMoveMessage.setCard4("Y4");
+        initGameMoveMessage.setCard5("Y5");
+        String json = objectMapper.writeValueAsString(initGameMoveMessage);
+
+        System.out.println(json);
+
+        assertEquals("{\"type\":\"initialMove\",\"from\":0,\"card1\":\"Y1\",\"card2\":\"Y2\",\"card3\":\"Y3\",\"card4\":\"Y4\",\"card5\":\"Y5\"}", json);
+
+        Message testJoinMessage = objectMapper.readValue("{\"type\":\"initialMove\",\"from\":0,\"card1\":\"Y1\",\"card2\":\"Y2\",\"card3\":\"Y3\",\"card4\":\"Y4\",\"card5\":\"Y5\"}", Message.class);
+
+        assertTrue(testJoinMessage instanceof InitGameMoveMessage);
+    }
+
+    @Test
+    void stackChangedMessageTest() throws JsonProcessingException {
+
+        StackChangedMessage stackChangedMessage = new StackChangedMessage();
+        stackChangedMessage.setFirstCard("redTwo");
+        stackChangedMessage.setSecondCard("redTwo");
+        stackChangedMessage.setThirdCard("redTwo");
+        stackChangedMessage.setFourthCard("redTwo");
+        stackChangedMessage.setFirstIndex(1.0);
+        stackChangedMessage.setSecondIndex(2.0);
+        stackChangedMessage.setThirdIndex(3.0);
+        stackChangedMessage.setFourthIndex(4.0);
+        stackChangedMessage.setCardOnTop("redTwo");
+        String json = objectMapper.writeValueAsString(stackChangedMessage);
+
+        System.out.println(json);
+
+        assertEquals("{\"type\":\"stackChanged\",\"from\":0,\"firstCard\":\"redTwo\",\"secondCard\":\"redTwo\",\"thirdCard\":\"redTwo\",\"fourthCard\":\"redTwo\",\"firstIndex\":1.0,\"secondIndex\":2.0,\"thirdIndex\":3.0,\"fourthIndex\":4.0,\"cardOnTop\":\"redTwo\"}", json);
+
+        Message testJoinMessage = objectMapper.readValue("{\"type\":\"stackChanged\",\"from\":0,\"firstCard\":\"redTwo\",\"secondCard\":\"redTwo\",\"thirdCard\":\"redTwo\",\"fourthCard\":\"redTwo\",\"firstIndex\":1.0,\"secondIndex\":2.0,\"thirdIndex\":3.0,\"fourthIndex\":4.0,\"cardOnTop\":\"redTwo\"}", Message.class);
+
+        assertTrue(testJoinMessage instanceof StackChangedMessage);
+    }
+
     @ParameterizedTest()
     @ValueSource(strings = {
             "Messages/joinGameMessage.json",
